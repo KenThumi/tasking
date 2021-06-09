@@ -1,6 +1,6 @@
 from tasks.forms import UserRegisterForm
-from django.shortcuts import render
-
+from django.shortcuts import redirect, render
+from django.contrib import messages
 # Create your views here.
 
 
@@ -12,16 +12,16 @@ def home(request):
 def register(request):
     form = UserRegisterForm()
 
-    # if request.method == 'POST':
-    #     form = UserRegisterForm(request.POST)
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
 
-    #     if form.is_valid():
-    #         form.save()
+        if form.is_valid():
+            form.save()
 
-    #         send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
+            # send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
 
-    #         messages.success(request, 'Successful Registration. Welcome email sent to your email.')
+            messages.success(request, 'Successful Registration. Welcome email sent to your email.')
 
-    #         return redirect('login')
+            return redirect('login')
 
     return render(request,'registration/register.html',{'form':form})
