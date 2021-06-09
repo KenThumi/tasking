@@ -1,1 +1,19 @@
-<h3>Lorem ipsum</h3>
+{%extends "base.html"%}
+
+{% block content %}
+{{block.super}}
+
+<div class="container-fluid my-2">
+   <div class="row">
+     <h3>
+         Lorem Ipsum
+     </h3>
+   </div>
+</div>
+<!-- copyrights -->
+<div class="mt-1 text-center">
+    <small class="text-center">
+    Copyright © 2021 Task Inc. All Rights Reserved
+    </small>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+.card-home img{
+    cursor: pointer;
+    height: 250px !important;
+    width: 100%;
+}
+
+@media(max-width:768px){
+    .card-home img{
+        height: 175px !important; 
+    }
+}
+
+
+.card img{
+        width: 100%;
+}
+
+body{
+    background-color: #f4f7f6;
+}
+.navbar{
+    background-color: #f4f7f6;
+    box-shadow: 0px 5px 9px #3c3c3e;
+}
