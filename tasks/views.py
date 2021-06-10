@@ -35,7 +35,7 @@ def register(request):
 
     return render(request,'registration/register.html',{'form':form})
 
-
+@login_required
 def addTask(request):
     form = TaskingForm()
 
@@ -54,7 +54,7 @@ def addTask(request):
 
     return render(request,'taskform.html',{'form':form})
 
-
+@login_required
 def updatePhase(request, id):
     task = Task.objects.get(pk=id)
 
@@ -81,7 +81,7 @@ def updatePhase(request, id):
     return render(request,'updatephaseform.html',{'form':form})
 
 
-
+@login_required
 def updateTask(request,id):
     task = Task.objects.get(pk=id)
 

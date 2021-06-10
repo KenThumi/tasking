@@ -5,6 +5,16 @@
 
 <div class="container my-2">
    <div class="row">
+        {% if user.is_superuser %}
+        <div class="col-12">
+          <a href="{% url 'addtask' %}" class="btn btn-info float-right btn-sm">
+          <span class="text-center">
+              Add Task <i class="fas fa-plus-circle"></i>
+          </span>
+          </a>
+        </div> 
+        {% endif %}     
+
         <div class="col-12 my-2" style="border-bottom: 2px solid;">
           <h2>Tasks</h2>
         </div>
@@ -49,11 +59,13 @@
                         
                        </div>
                        <div class="card-footer">
+                            {% if user.is_superuser %}
                               <div class="m-1 float-left">
                                 <a class="btn btn-sm btn-outline-warning" href="{% url 'updatetask' task.id %}" target="_blank">
                                     Update Task
                                 </a>
                               </div>
+                              {%endif%}
                               <div class="m-1 float-right">
                                        <a class="btn btn-sm btn-outline-info" href="{% url 'updatephase' task.id %}" target="_blank">
                                            Update Phase
