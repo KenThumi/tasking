@@ -1,3 +1,4 @@
+from tasks.models import Task
 from tasks.email import send_tasking_notification_email, send_welcome_email
 from tasks.forms import TaskingForm, UserRegisterForm
 from django.shortcuts import redirect, render
@@ -8,7 +9,12 @@ from django.contrib.auth.models import User
 
 @login_required
 def home(request):
-    return render(request,'index.html')
+    tasks = Task.objects.all()
+
+
+    ctx = {'tasks':tasks}
+
+    return render(request,'index.html',ctx)
 
 
 
