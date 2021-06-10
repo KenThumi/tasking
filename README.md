@@ -1,9 +1,9 @@
-# Neighborhood Application
+# Tasking Application
 
 
 ## Description
-Welcome to this application. Upon login a user is required to add their neighbourhood so as to  
-post see posts, business, health/police depts and people in their neighborhood.
+Welcome to this application. This is an app whereby the emoloyer can task employee  
+and the employee can update task progress.
 
 ## Author
 - [Kenneth Thumi](https://github.com/KenThumi)
@@ -12,16 +12,16 @@ post see posts, business, health/police depts and people in their neighborhood.
 Email:kenthumi@gmail.com
 
 ## Responsiveness
-The website is adapteble to any screen size.
+The website is adaptable to any screen size.
 
 ## Mock Up Design
-Mock up [link](https://www.figma.com/file/5oVTJJrlLRU7NYAcNr75iM/Untitled?node-id=0%3A1)
+Mock up [link](https://www.figma.com/file/ukZI7jUQzfQIzQjFHViQMu/Capstone?node-id=0%3A1)
 
 
 ## Setup instructions
 Below are steps to follow:
 1. Open cli, navigate to your project folder and clone the project: <br/>
-         `git clone https://github.com/KenThumi/neighborhood.git`
+         `git clone https://github.com/KenThumi/tasking.git`
 2. Install python, preferably python3.
 3. Create a virtual environment: <br/>
          `python3 -m venv virtual`
@@ -98,4 +98,4 @@ urllib3==1.26.5
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2021 © Neighborhood Application
+- Copyright 2021 © Tasking Application
