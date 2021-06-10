@@ -140,7 +140,7 @@ def search(request):
         else:
             tasks=Task.objects.filter(user= request.user,title__icontains=needle).all()
 
-        ctx = {'tasks':tasks, 'search_results':f'Search Results ({tasks.count()})'}
+        ctx = {'tasks':tasks, 'search_results':f'Search Results ({tasks.count()})', 'filter_form':UpdateTaskPhaseForm()}
 
         return render(request, 'index.html',ctx)
 
