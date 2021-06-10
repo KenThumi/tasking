@@ -1,5 +1,5 @@
 from tasks.models import Task
-from tasks.email import send_tasking_notification_email, send_welcome_email
+from tasks.email import send_task_challenge_notification_email, send_tasking_notification_email, send_welcome_email
 from tasks.forms import ChallengeForm, TaskingForm, UpdateTaskPhaseForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -178,11 +178,14 @@ def addChallenge(request,id):
         form = ChallengeForm(request.POST)
 
         if form.is_valid():
+            task = Task.objects.get(pk=id)
 
             if request.user.is_superuser == False:
                 challenge = form.save(commit=False)
-                challenge.task= Task.objects.get(pk=id)
+                challenge.task= task
                 challenge.save()
+
+                send_task_challenge_notification_email(task)
 
                 messages.success(request, 'Chellenge added successfully')
 

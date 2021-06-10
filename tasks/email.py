@@ -27,3 +27,17 @@ def send_tasking_notification_email(user):
     msg = EmailMultiAlternatives(subject,text_content,sender,[user.email])
     msg.attach_alternative(html_content,'text/html')
     msg.send()
+
+
+def send_task_challenge_notification_email(task):
+    # Creating message subject and sender
+    subject = f'Challenge for task: {task.title }'
+    sender = 'mwangiapps1992@gmail.com'
+
+    #passing in the context vairables
+    text_content = render_to_string('email/notifychallenge.txt',{"task": task})
+    html_content = render_to_string('email/notifychallenge.html',{"task": task})
+
+    msg = EmailMultiAlternatives(subject,text_content,sender,['mwangiapps1992@gmail.com'])
+    msg.attach_alternative(html_content,'text/html')
+    msg.send()

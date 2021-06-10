@@ -1,0 +1,2 @@
+ {{ task.user }} has posted an obstacle on task {{task.id}}: {{task.title}}.
+    Kindly login for more information.
