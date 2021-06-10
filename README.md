@@ -14,6 +14,9 @@ Email:kenthumi@gmail.com
 ## Responsiveness
 The website is adaptable to any screen size.
 
+## API Endpoints
+1. https://ken-capstone.herokuapp.com/api/tasks/:This endpoint returns all tasks details
+
 ## Mock Up Design
 Mock up [link](https://www.figma.com/file/ukZI7jUQzfQIzQjFHViQMu/Capstone?node-id=0%3A1)
 
