@@ -1,5 +1,5 @@
 from tasks.email import send_welcome_email
-from tasks.forms import UserRegisterForm
+from tasks.forms import TaskingForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -27,3 +27,9 @@ def register(request):
             return redirect('login')
 
     return render(request,'registration/register.html',{'form':form})
+
+
+def addTask(request):
+    form = TaskingForm()
+
+    return render(request,'taskform.html',{'form':form})
