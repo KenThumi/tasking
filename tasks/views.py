@@ -79,3 +79,27 @@ def updatePhase(request, id):
    
 
     return render(request,'updatephaseform.html',{'form':form})
+
+
+
+def updateTask(request,id):
+    task = Task.objects.get(pk=id)
+
+    if request.method == 'POST':
+        form = TaskingForm(request.POST)
+
+        if form.is_valid():
+            Task.objects.filter(id=id).update(title=form.cleaned_data['title'], description=form.cleaned_data['description'], user=form.cleaned_data['user'])
+
+            user = User.objects.filter(username= form.cleaned_data['user']).first()
+
+            send_tasking_notification_email(user)
+
+            messages.success(request, 'Task updated successfully')
+
+            return redirect('home')
+
+    
+    form = TaskingForm(instance=task)
+
+    return render(request,'taskform.html',{'form':form})
