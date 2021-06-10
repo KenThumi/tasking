@@ -13,7 +13,7 @@ class Phase(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField()
-    phase = models.ForeignKey(Phase,on_delete=models.CASCADE,related_name='tasks', null=True)
+    phase = models.ForeignKey(Phase,on_delete=models.CASCADE,related_name='tasks', default=1)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='tasks')
     
 
