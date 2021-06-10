@@ -1,0 +1,2 @@
+Hello {{name}}
+There is a new task for you kindly login to the tasking application for more information.

@@ -1,8 +1,9 @@
-from tasks.email import send_welcome_email
+from tasks.email import send_tasking_notification_email, send_welcome_email
 from tasks.forms import TaskingForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 @login_required
@@ -38,7 +39,10 @@ def addTask(request):
         if form.is_valid():
             form.save()
 
+            user = User.objects.get(pk= int(form.cleaned_data['user']))
+
             # send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
+            # send_tasking_notification_email(user)
 
             messages.success(request, 'Task added successfully')
 

@@ -9,11 +9,11 @@ class Phase(models.Model):
 
     def __str__(self):
         return self.title
-        
+
 class Task(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField()
-    phase = models.ForeignKey(Phase,on_delete=models.CASCADE,related_name='tasks')
+    phase = models.ForeignKey(Phase,on_delete=models.CASCADE,related_name='tasks', null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='tasks')
     
 
