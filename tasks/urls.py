@@ -14,5 +14,7 @@ urlpatterns = [
     path('deletetask/<int:id>', views.deleteTask, name='deletetask'),
     path('search/',views.search, name='search'),
     path('filterphase/',views.filterphase, name='filterphase'),
-    path('addchallenge/<int:id>', views.addChallenge, name='addchallenge')
+    path('addchallenge/<int:id>', views.addChallenge, name='addchallenge'),
+    # DRF API routes
+    path('api/tasks/', views.TaskList.as_view()),
 ]

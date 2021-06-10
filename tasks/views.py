@@ -5,7 +5,12 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-# Create your views here.
+
+# Rest API
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import TaskSerializer
+
 
 @login_required
 def home(request):
@@ -191,3 +196,11 @@ def addChallenge(request,id):
     ctx = {'form':form}
 
     return render(request, 'challengeForm.html', ctx)
+
+
+# REST API views
+class TaskList(APIView):
+    def get(self, request, format=None):
+        all_tasks= Task.objects.all()
+        serializers = TaskSerializer(all_tasks, many=True)
+        return Response(serializers.data)
