@@ -71,16 +71,29 @@
                              {%endif%}
                            </p>
                            <p>
-                             {% if task.challenges.all %}
-                                <a href="#"> Challenges
+                            {% if not user.is_superuser %}
+                                {% if task.challenges.all %}
+                                    <a href="#" data-toggle="modal" data-target="#modal-{{task.id}}"> Challenges
+                                      <i class="fas fa-comments ml-1"></i>
+                                    </a>
+                                    {% include '_challenges.html'%}
+                                {%else%}
+                                <a href="{% url 'addchallenge' task.id %}"> Add Challenges
+                                  <i class="fas fa-plus-circle ml-1"></i>
+                                </a>
+                                {%endif%}
+                            {% else %}
+                            
+                                {% if task.challenges.all %}
+                                <a href="#" data-toggle="modal" data-target="#modal-{{task.id}}"> Challenges
                                   <i class="fas fa-comments ml-1"></i>
                                 </a>
-                                
-                             {%else%}
-                             <a href="#"> Add Challenges
-                              <i class="fas fa-plus-circle ml-1"></i>
-                            </a>
-                             {%endif%}
+                                {% include '_challenges.html'%}
+                                {%else%}
+                                     Zero challenges
+                                {%endif%}
+
+                            {%endif%}
                            </p>
                         
                         
