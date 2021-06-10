@@ -18,6 +18,14 @@
         <div class="col-12 my-2" style="border-bottom: 2px solid;">
           <h2>Tasks</h2>
         </div>
+           <!-- search results -->
+           {% if search_results %}
+           <div class="col-12 my-1">
+               <h4 class="text-center">
+                       {{search_results}}
+                   </h4>
+           </div>
+           {%endif%}
 
           <!-- results -->
           {%for task in tasks %}

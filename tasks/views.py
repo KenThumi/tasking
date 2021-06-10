@@ -117,3 +117,23 @@ def deleteTask(request,id):
     messages.success(request, 'Task deleted successfully')
 
     return redirect('home')
+
+
+
+@login_required
+def search(request):
+
+    if request.method=='POST':
+
+        needle = request.POST['search']
+
+        if request.user.is_superuser:
+            tasks=Task.objects.filter(title__icontains=needle).all()
+        else:
+            tasks=Task.objects.filter(user= request.user,title__icontains=needle).all()
+
+        ctx = {'tasks':tasks, 'search_results':f'Search Results ({tasks.count()})'}
+
+        return render(request, 'index.html',ctx)
+
+    return redirect('home')
