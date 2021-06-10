@@ -9,7 +9,10 @@ from django.contrib.auth.models import User
 
 @login_required
 def home(request):
-    tasks = Task.objects.all()
+    if request.user.is_superuser:
+        tasks = Task.objects.all()
+    else:
+        tasks = Task.objects.filter(user= request.user)
 
 
     ctx = {'tasks':tasks}
