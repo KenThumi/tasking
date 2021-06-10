@@ -38,11 +38,9 @@ def addTask(request):
 
         if form.is_valid():
             form.save()
+            user = User.objects.filter(username= form.cleaned_data['user']).first()
 
-            user = User.objects.get(pk= int(form.cleaned_data['user']))
-
-            # send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
-            # send_tasking_notification_email(user)
+            send_tasking_notification_email(user)
 
             messages.success(request, 'Task added successfully')
 
