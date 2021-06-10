@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the tasking application. Thank you for registering

@@ -1,9 +1,11 @@
+from tasks.email import send_welcome_email
 from tasks.forms import UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required
 def home(request):
     return render(request,'index.html')
 
@@ -18,7 +20,7 @@ def register(request):
         if form.is_valid():
             form.save()
 
-            # send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
+            send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
 
             messages.success(request, 'Successful Registration. Welcome email sent to your email.')
 
