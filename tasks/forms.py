@@ -21,6 +21,12 @@ class TaskingForm(forms.ModelForm):
 
 
 
+class UpdateTaskPhaseForm(forms.ModelForm):
+
+    class Meta:
+        model = Task
+        fields = ['phase']
+
 
 
 

@@ -1,6 +1,6 @@
 from tasks.models import Task
 from tasks.email import send_tasking_notification_email, send_welcome_email
-from tasks.forms import TaskingForm, UserRegisterForm
+from tasks.forms import TaskingForm, UpdateTaskPhaseForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -53,3 +53,29 @@ def addTask(request):
             return redirect('home')
 
     return render(request,'taskform.html',{'form':form})
+
+
+def updatePhase(request, id):
+    task = Task.objects.get(pk=id)
+
+    if request.method == 'POST':
+        form = UpdateTaskPhaseForm(request.POST)
+
+        if form.is_valid():
+            task.phase = form.cleaned_data['phase']
+
+            task.save()
+
+            messages.success(request, 'Task phase updated successfully')
+
+            return redirect('home')
+
+
+    form = UpdateTaskPhaseForm()
+
+
+    if task != None:
+        form = UpdateTaskPhaseForm(instance=task)
+   
+
+    return render(request,'updatephaseform.html',{'form':form})
