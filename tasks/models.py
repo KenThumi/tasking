@@ -17,6 +17,24 @@ class Task(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='tasks')
     
 
+
+    class Meta:
+        ordering = ["-pk"]
+
+
     def __str__(self):
         return self.title
 
+
+class Challege(models.Model):
+    description = models.TextField()
+    task = models.ForeignKey(Task,on_delete=models.CASCADE,related_name='challenges')
+
+
+
+    class Meta:
+        ordering = ["-pk"]
+
+
+    def __str__(self):
+        return self.title

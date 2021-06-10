@@ -70,6 +70,18 @@
                              </strong>
                              {%endif%}
                            </p>
+                           <p>
+                             {% if task.challenges.all %}
+                                <a href="#"> Challenges
+                                  <i class="fas fa-comments ml-1"></i>
+                                </a>
+                                
+                             {%else%}
+                             <a href="#"> Add Challenges
+                              <i class="fas fa-plus-circle ml-1"></i>
+                            </a>
+                             {%endif%}
+                           </p>
                         
                         
                        </div>

@@ -1,6 +1,6 @@
 from tasks.models import Task
 from tasks.email import send_tasking_notification_email, send_welcome_email
-from tasks.forms import TaskingForm, UpdateTaskPhaseForm, UserRegisterForm
+from tasks.forms import ChallengeForm, TaskingForm, UpdateTaskPhaseForm, UserRegisterForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -162,3 +162,32 @@ def filterphase(request):
             return render(request, 'index.html',ctx)
 
     return redirect('home')
+
+
+def addChallenge(request,id):
+    form = ChallengeForm()
+
+
+    if request.method=='POST':
+
+        form = ChallengeForm(request.POST)
+
+        if form.is_valid():
+
+            if request.user.is_superuser == False:
+                challenge = form.save(commit=False)
+                challenge.task= Task.objects.get(pk=id)
+                challenge.save()
+
+                messages.success(request, 'Chellenge added successfully')
+
+                return redirect('home')
+            else:
+                messages.warning(request, 'Permission Denied')
+
+                return redirect('home')
+    
+
+    ctx = {'form':form}
+
+    return render(request, 'challengeForm.html', ctx)
