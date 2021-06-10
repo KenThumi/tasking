@@ -32,4 +32,16 @@ def register(request):
 def addTask(request):
     form = TaskingForm()
 
+    if request.method == 'POST':
+        form = TaskingForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            # send_welcome_email(form.cleaned_data['username'], form.cleaned_data['email'])
+
+            messages.success(request, 'Task added successfully')
+
+            return redirect('home')
+
     return render(request,'taskform.html',{'form':form})
