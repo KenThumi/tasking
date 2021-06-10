@@ -103,3 +103,14 @@ def updateTask(request,id):
     form = TaskingForm(instance=task)
 
     return render(request,'taskform.html',{'form':form})
+
+
+@login_required
+def deleteTask(request,id):
+    task = Task.objects.get(pk=id)
+
+    task.delete()
+
+    messages.success(request, 'Task deleted successfully')
+
+    return redirect('home')
