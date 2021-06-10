@@ -1,0 +1,24 @@
+{% load bootstrap4 %}
+<div class="col-12 my-2">
+    <!-- spacing -->
+</div>
+
+    <div class="col-md-12 hdn search-div">
+        <form class="navbar-form float-left" role="search" action="{% url 'filterphase' %}" method="POST">
+                
+            <div class="input-group ">
+                {% csrf_token %}
+                {% bootstrap_form filter_form %}
+              <div class="input-group-btn">
+                <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+    
+          </form>
+    </div>
+    
+  
+
+    
+    
+

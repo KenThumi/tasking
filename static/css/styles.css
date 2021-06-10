@@ -22,3 +22,15 @@ body{
     background-color: #f4f7f6;
     box-shadow: 0px 5px 9px #3c3c3e;
 }
+
+.hdn{
+    display: none;
+}
+
+.show{
+    display:block;
+}
+
+.search-div label{
+    display: none;
+}

@@ -15,7 +15,10 @@ def home(request):
         tasks = Task.objects.filter(user= request.user)
 
 
-    ctx = {'tasks':tasks}
+    filter_form = UpdateTaskPhaseForm()
+
+
+    ctx = {'tasks':tasks, 'filter_form':filter_form}
 
     return render(request,'index.html',ctx)
 
@@ -135,5 +138,27 @@ def search(request):
         ctx = {'tasks':tasks, 'search_results':f'Search Results ({tasks.count()})'}
 
         return render(request, 'index.html',ctx)
+
+    return redirect('home')
+
+
+@login_required
+def filterphase(request):
+    filter_form = UpdateTaskPhaseForm()
+
+    if request.method=='POST':
+
+        form = UpdateTaskPhaseForm(request.POST)
+
+        if form.is_valid():
+
+            if request.user.is_superuser:
+                tasks=Task.objects.filter(phase=form.cleaned_data['phase']).all()
+            else:
+                tasks=Task.objects.filter(user= request.user,phase=form.cleaned_data['phase']).all()
+
+            ctx = {'tasks':tasks, 'search_results':f'Search Results ({tasks.count()})','filter_form':filter_form}
+
+            return render(request, 'index.html',ctx)
 
     return redirect('home')

@@ -5,8 +5,15 @@
 
 <div class="container my-2">
    <div class="row">
+        <div class="col-6">
+          <button class="btn btn-info float-left btn-sm" id="search">
+              <span class="text-center">
+                  Filter By Phase <i class="fas fa-search"></i>
+              </span>
+          </button>
+      </div>
         {% if user.is_superuser %}
-        <div class="col-12">
+        <div class="col-6">
           <a href="{% url 'addtask' %}" class="btn btn-info float-right btn-sm">
           <span class="text-center">
               Add Task <i class="fas fa-plus-circle"></i>
@@ -14,7 +21,7 @@
           </a>
         </div> 
         {% endif %}     
-
+        {% include '_search.html'%}
         <div class="col-12 my-2" style="border-bottom: 2px solid;">
           <h2>Tasks</h2>
         </div>
